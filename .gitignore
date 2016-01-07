@@ -1,0 +1,17 @@
+.DS_Store
+.nodemonignore
+npm-debug.log
+.bower-*/
+uploads
+modules/users/client/img/profile/uploads
+
+node_modules/*/
+
+*.log
+
+.meteor
+packages
+
+# Editors settings
+.rootdir
+.idea/
