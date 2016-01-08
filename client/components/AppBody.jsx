@@ -11,16 +11,21 @@ AppBody = React.createClass({
       modal: false
     }
   },
-  ionModal(tab) {
+  ionModal(tab, content) {
     this.setState({
       modal: (
-        <IonModal>
+        <IonModal modalContent={content}>
           <div className="h1 title">{tab}</div>
           <button onClick={ () => this.setState({modal:false}) } className="button button-icon active">
             <i className="icon ion-ios-close-empty"></i>
           </button>
         </IonModal>
       )
+    })
+  },
+  setModalState(status) {
+    this.setState({
+      modal: status
     })
   },
   render() {
@@ -31,14 +36,17 @@ AppBody = React.createClass({
           {this.state.modal}
         </Transition>
         <div className="bar bar-header bar-light">
-          <ReactRouter.Link className="button button-icon icon ion-ios-search-strong" to={"/settings"}></ReactRouter.Link>
+          <ReactRouter.Link className="button button-icon icon ion-ios-search-strong" to={"/other"}></ReactRouter.Link>
           <ReactRouter.Link className="h1 title" to={"/"}>Clikque</ReactRouter.Link>
-          <ReactRouter.Link className="button button-icon icon ion-android-person" to={"/other"}></ReactRouter.Link>
+          <ReactRouter.Link className="button button-icon icon ion-android-person" to={"/settings"}></ReactRouter.Link>
         </div>
         <div className="view">
           <div className="scroll-content ionic-scroll">
             <div className="content overflow-scroll has-header">
-              {this.props.children}
+              {this.props.children && React.cloneElement(this.props.children, {
+                ionModal: this.ionModal,
+                setModalState: this.setModalState
+              })}
             </div>
           </div>
         </div>
