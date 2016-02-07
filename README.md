@@ -1,4 +1,4 @@
-# clikque
+# mobile app on meteor+ionic+react
 mobile playground
 
 # Installation
